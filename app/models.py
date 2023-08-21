@@ -3,7 +3,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from datetime import datetime
 
-DATABASE_URL = "postgresql+asyncpg://user:password@localhost:5432/mydatabase"
+DATABASE_URL = "postgresql://localhost:5432/postgres"
 engine = create_engine(DATABASE_URL, echo=True)
 SessionLocal = sessionmaker(bind=engine, future=True)
 Base = declarative_base()
@@ -21,3 +21,6 @@ class OrderHistory(Base):
     order_id = Column(Integer, ForeignKey('orders.id'))
     execution_time = Column(DateTime, default=datetime.utcnow)
     image_url = Column(String)
+
+# Теперь вызываем create_all после определения моделей
+Base.metadata.create_all(bind=engine)

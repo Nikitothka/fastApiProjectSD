@@ -1,5 +1,7 @@
-fastapi[all]
+fastapi
 uvicorn
-asyncpg
+greenlet
 sqlalchemy
 celery[redis]
+psycopg2
+
